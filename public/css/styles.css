@@ -1,0 +1,15 @@
+* {
+    margin: 10px 0px;
+    padding: 0px;
+    font-family: Arial;
+    font-size: 1em;
+}
+
+body {
+    margin:20px;
+
+}
+
+input[type="button" i]{
+/*    color:black;*/
+}
