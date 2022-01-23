@@ -1,54 +1,38 @@
 $(document).ready(function () {
-    //            console.log("ready!");
 
-    $("#button").click(function () {
-        console.log("clicked");
 
-        if ('geolocation' in navigator) {
-            //console.log("geolocation available");
-            navigator.geolocation.getCurrentPosition(async position => {
-                console.log(position);
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
+ 
+    const button = document.getElementById('button');
+    button.addEventListener('click', async event => {
+        
+        //get elements from page
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
 
-                //get inside form values - store in variable
-                const name = document.getElementById('name').value;
-
-                document.getElementById("lat").textContent = lat;
-                document.getElementById("long").textContent = lon;
-
-                //add info to data to be passed to database
-                const data = {
-                    name,
-                    lat,
-                    lon
-                };
-
-                //post to database
-                const options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': "application/json"
-                    },
-                    body: JSON.stringify(data)
-                };
-
-                const response = await fetch("/api", options)
-                const json = await response.json();
-                console.log(json);
-
-            });
-
-        } else {
-            console.log("geolocation NOT available");
-        }
+        //store those elements in a data object
+        const data = {
+            firstName,
+            lastName
+        };
+        
+        //store as JSON
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        
+        //post to database
+        const response = await fetch('/api', options);
+        const json = await response.json();
+        console.log(json);
     });
 
 
-
-    // Get the input field
-    var input = document.getElementById("name");
-
+    //when enter is pressed in the form field, submit the form
+    const input = document.getElementById('lastName');
     // Execute a function when the user releases a key on the keyboard
     input.addEventListener("keyup", function (event) {
         // Number 13 is the "Enter" key on the keyboard
