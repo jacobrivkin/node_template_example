@@ -24,6 +24,8 @@ database.loadDatabase();
 //from webpage
 app.post('/api', (request, response) => {
     const data = request.body;
+    const timestamp = Date.now();
+    data.timeStamp = timestamp;
     database.insert(data);
     console.log(database);
     response.json(data);
@@ -31,8 +33,8 @@ app.post('/api', (request, response) => {
 
 //to webpage
 app.get('/api', (request, response) => {
-
-    database.find({}, (err, data) => {
+    //return results in reverse order based on the timestamp
+    database.find({}).sort({timeStamp: -1}).exec((err, data) => {
         if (err) {
             response.end();
             return;

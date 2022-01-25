@@ -20,10 +20,15 @@ $(document).ready(function () {
             root.classList.add("box"); //add a class to the data
             const fname = document.createElement("p");
             const lname = document.createElement("span");
+            const dater = document.createElement("span");
+            const dateString = new Date(item.timeStamp).toLocaleDateString();
 
             //in this context, the dot notation shows the name of the element in the database
-            fname.textContent = 'name: ' + item.firstName + " ";
-            lname.textContent = item.lastName;
+            fname.textContent = item.firstName + " ";
+            lname.textContent = item.lastName + ", ";
+            dater.textContent = dateString;
+            
+            lname.append(dater);
             fname.append(lname);
             root.append(fname);
 

@@ -8,6 +8,7 @@ $(document).ready(function () {
         //get elements from page
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
+  
 
         //store those elements in a data object
         const data = {
